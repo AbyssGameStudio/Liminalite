@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     public float jumpPower = 5f;
 
     // Internal Variables
-    private bool isGrounded = false;
+    private bool isGrounded = true;
 
     #endregion
 
@@ -86,9 +86,6 @@ public class PlayerController : MonoBehaviour
     // Internal Variables
     private bool isCrouched = false;
     private Vector3 originalScale;
-
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
 
     #endregion
     #endregion
@@ -149,7 +146,7 @@ public class PlayerController : MonoBehaviour
                 yaw += mouseSensitivity * Input.GetAxis("Mouse X");
                 pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
             }
-            playerCamera.transform.eulerAngles = new Vector3(Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle), yaw, 0);
+            playerCamera.transform.localEulerAngles = new Vector3(Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle), 0, 0);
             transform.eulerAngles = new Vector3(0, yaw, 0);
         }
 
@@ -279,8 +276,6 @@ public class PlayerController : MonoBehaviour
 
         #endregion
 
-        CheckGround();
-
         HeadBob();
     }
 
@@ -369,10 +364,10 @@ public class PlayerController : MonoBehaviour
         }
     }*/
 
-    private void CheckGround()
-    {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance);
-    }
+    //private void CheckGround()
+    //{
+    //    isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance);
+    //}
 
     private void Jump()
     {
@@ -439,6 +434,14 @@ public class PlayerController : MonoBehaviour
             // Resets when play stops moving
             timer = 0;
             joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
+        }
+    }
+    // Resets jumping whenever touches ground
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
         }
     }
 }
