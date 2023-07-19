@@ -14,7 +14,7 @@ public class DialogueManager : MonoBehaviour
     public AudioClip whatever;
     public bool skipFinishesDialogue;
     private int index = 0;
-    private Dialogue[] dialogues;
+    private DialogueData[] dialogues;
     private Coroutine loadRoutine;
 
     void Start()
@@ -32,13 +32,13 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Dialogue[] dias)
+    public void StartDialogue(Dialogue dias)
     {
-        loadRoutine = StartCoroutine(LoadDialogue(dias[index]));
-        dialogues = dias;
+        dialogues = dias.dialogues;
+        loadRoutine = StartCoroutine(LoadDialogue(dialogues[index]));
     }
 
-    public IEnumerator LoadDialogue(Dialogue dia)
+    public IEnumerator LoadDialogue(DialogueData dia)
     {
         currentText = String.Format("<color=#E0FFFF>{0}: <color=\"white\">", dia.name);
         voiceAudioSource.clip = dia.voiceDub;
