@@ -840,16 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 158422596}
-  dialogue:
-  - name: Sean
-    text: Where the hell am I amk
-    voiceDub: {fileID: 8300000, guid: c10ae943f887b0b40a7d330f3ae1a092, type: 3}
-  - name: "Anay\u0131n"
-    text: "anay\u0131n am\u0131nda"
-    voiceDub: {fileID: 8300000, guid: ecc6f309f8473bd4881bfb54bcb8246d, type: 3}
-  - name: "Babay\u0131n"
-    text: "yo babay\u0131n am\u0131nda"
-    voiceDub: {fileID: 8300000, guid: 6f7f4655dd1dd934baa780f094b17e93, type: 3}
+  dialogue: {fileID: 11400000, guid: a681de49314c7c94dab00af82e9dc074, type: 2}
 --- !u!135 &1441032708
 SphereCollider:
   m_ObjectHideFlags: 0

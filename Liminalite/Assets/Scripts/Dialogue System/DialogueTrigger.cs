@@ -6,7 +6,7 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     public DialogueManager manager;
-    public Dialogue[] dialogue;
+    public Dialogue dialogue;
     public void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player"))

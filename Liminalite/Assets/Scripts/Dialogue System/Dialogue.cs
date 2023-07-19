@@ -1,10 +1,16 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class Dialogue
+[CreateAssetMenu(fileName="New Dialogue",menuName="Dialogue")]
+public class Dialogue : ScriptableObject
+{
+    
+    public DialogueData[] dialogues;
+}
+
+[System.Serializable]
+public class DialogueData
 {
     public string name;
     [TextArea(2, 10)]
